@@ -5,14 +5,22 @@
     <title>User info</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br/>
-    <label for="email">Enter Email: </label>
-    <input type="email" th:field="*{email}" id="email"/>
-    <br/>
-    <input type="submit" value="Create new user"/>
+<form th:action="@{/users}" th:object="${user}" method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}">
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}" style="color:red"></span>
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}">
+        <span th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}" style="color:red"></span>
+    </div>
+
+    <button type="submit">Submit</button>
 </form>
 </body>
 </html>
